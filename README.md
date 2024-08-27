@@ -1,3 +1,5 @@
+masterブランチをメインとして使用しています。
+
 Content ⇒ InGame ⇒ Maps ⇒ Game_Start_Menuからゲームを開始できます。<br/>
 ゲームに使用中のファイルはすべてInGameフォルダ内で管理しています。<br/>
 ゲームパッド推奨。<br/>
