@@ -1,4 +1,4 @@
-ゲーム制作エンジン：UE5.3.2
+ゲーム開発エンジン：UE5.3.2
 masterブランチをメインとして使用しています。
 
 Content ⇒ InGame ⇒ Maps ⇒ Game_Start_Menuからゲームを開始できます。
