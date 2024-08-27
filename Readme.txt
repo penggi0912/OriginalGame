@@ -1,4 +1,4 @@
-InGameフォルダ ⇒ Maps ⇒ Game_Start_Menuからゲームを開始できます。
+Content ⇒ InGame ⇒ Maps ⇒ Game_Start_Menuからゲームを開始できます。
 ゲームに使用中のファイルはすべてInGameフォルダ内で管理しています。
 ゲームパッド推奨。
 
