@@ -1,6 +1,7 @@
 ゲーム制作エンジン：UE5.3.2<br/>
 masterブランチをメインとして使用しています。<br/>
 
+OriginalGame.uprojectファイルを起動後、<br/>
 Content ⇒ InGame ⇒ Maps ⇒ Game_Start_Menuからゲームを開始できます。<br/>
 ゲームに使用中のファイルはすべてInGameフォルダ内で管理しています。<br/>
 ゲームパッド推奨。<br/>
