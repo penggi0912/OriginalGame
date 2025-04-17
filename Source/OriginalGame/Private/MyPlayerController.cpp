@@ -1,4 +1,4 @@
-// MyPlayerController.cpp
+ï»¿// MyPlayerController.cpp
 
 #include "MyPlayerController.h"
 #include "EnhancedInputComponent.h"
@@ -43,7 +43,7 @@ void AMyPlayerController::SetCurrentMenu_Implementation(UUI_MenuBase* Menu)
 
 void AMyPlayerController::OnFocusUp(const FInputActionValue& Value)
 {
-	(void)Value;  // –¢Žg—p‚Å‚ ‚é‚±‚Æ‚ð–¾Ž¦
+	(void)Value;  // æœªä½¿ç”¨ã§ã‚ã‚‹ã“ã¨ã‚’æ˜Žç¤º
 	if (CurrentMenu)
 	{
 		CurrentMenu->FocusUp();
@@ -52,7 +52,7 @@ void AMyPlayerController::OnFocusUp(const FInputActionValue& Value)
 
 void AMyPlayerController::OnFocusDown(const FInputActionValue& Value)
 {
-	(void)Value;  // –¢Žg—p‚Å‚ ‚é‚±‚Æ‚ð–¾Ž¦
+	(void)Value;  // æœªä½¿ç”¨ã§ã‚ã‚‹ã“ã¨ã‚’æ˜Žç¤º
 	if (CurrentMenu)
 	{
 		CurrentMenu->FocusDown();
@@ -61,7 +61,7 @@ void AMyPlayerController::OnFocusDown(const FInputActionValue& Value)
 
 void AMyPlayerController::OnFocusRight(const FInputActionValue& Value)
 {
-	(void)Value;  // –¢Žg—p‚Å‚ ‚é‚±‚Æ‚ð–¾Ž¦
+	(void)Value;  // æœªä½¿ç”¨ã§ã‚ã‚‹ã“ã¨ã‚’æ˜Žç¤º
 	if (CurrentMenu)
 	{
 		CurrentMenu->FocusRight();
@@ -70,7 +70,7 @@ void AMyPlayerController::OnFocusRight(const FInputActionValue& Value)
 
 void AMyPlayerController::OnFocusLeft(const FInputActionValue& Value)
 {
-	(void)Value;  // –¢Žg—p‚Å‚ ‚é‚±‚Æ‚ð–¾Ž¦
+	(void)Value;  // æœªä½¿ç”¨ã§ã‚ã‚‹ã“ã¨ã‚’æ˜Žç¤º
 	if (CurrentMenu)
 	{
 		CurrentMenu->FocusLeft();

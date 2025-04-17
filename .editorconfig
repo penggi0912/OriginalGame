@@ -1,0 +1,13 @@
+# このファイルが最上位のEditorConfig
+root = true
+
+# C++ ファイル全体に適用
+[*.cpp]
+charset = utf-8-bom
+indent_style = space
+indent_size = 4
+
+[*.h]
+charset = utf-8-bom
+indent_style = space
+indent_size = 4

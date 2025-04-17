@@ -1,4 +1,4 @@
-// MyPlayerController.h
+ï»¿// MyPlayerController.h
 
 #pragma once
 
@@ -24,7 +24,7 @@ protected:
 public:
 	virtual void SetupInputComponent() override;
 
-	// IMC, IA ‚ğƒGƒfƒBƒ^‚Åİ’è‚Å‚«‚é‚æ‚¤‚É
+	// IMC, IA ã‚’ã‚¨ãƒ‡ã‚£ã‚¿ã§è¨­å®šã§ãã‚‹ã‚ˆã†ã«
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputMappingContext* IMC_Menu;
 
@@ -40,14 +40,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputAction* IA_FocusLeft;
 
-	// “ü—Íó‚¯æ‚èæ
+	// å…¥åŠ›å—ã‘å–ã‚Šå…ˆ
 	void OnFocusUp(const FInputActionValue& Value);
 	void OnFocusDown(const FInputActionValue& Value);
 	void OnFocusRight(const FInputActionValue& Value);
 	void OnFocusLeft(const FInputActionValue& Value);
 
 private:
-	// •\¦’†‚Ìƒƒjƒ…[QÆ‚ğ“n‚¹‚é‚æ‚¤‚É‚·‚é
+	// è¡¨ç¤ºä¸­ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‚ç…§ã‚’æ¸¡ã›ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	UPROPERTY()
 	UUI_MenuBase* CurrentMenu;
 

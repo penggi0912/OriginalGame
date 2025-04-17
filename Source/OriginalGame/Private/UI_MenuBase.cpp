@@ -1,27 +1,27 @@
-// UI_MenuBase.cpp
+ï»¿// UI_MenuBase.cpp
 
 #include "UI_MenuBase.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-// Še•ûŒü‚ÌŠÖ”‚ÍABlueprintÀ‘•ƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚·iBlueprint‚Åˆ—‚Å‚«‚é‚æ‚¤‚É‚·‚éj
+// å„æ–¹å‘ã®é–¢æ•°ã¯ã€Blueprintå®Ÿè£…ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã™ï¼ˆBlueprintã§å‡¦ç†ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼‰
 
 void UUI_MenuBase::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	// •K—v‚Å‚ ‚ê‚Î‚±‚±‚Å‰ŠúƒtƒH[ƒJƒXİ’è‚È‚Ç‚à‰Â”\
-	// ƒEƒBƒWƒFƒbƒg©‘Ì‚ÉƒtƒH[ƒJƒX
+	// å¿…è¦ã§ã‚ã‚Œã°ã“ã“ã§åˆæœŸãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®šãªã©ã‚‚å¯èƒ½
+	// ã‚¦ã‚£ã‚¸ã‚§ãƒƒãƒˆè‡ªä½“ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹
 	SetFocus();
 }
 
-// •K—v‚É‰‚¶‚ÄŠeŠÖ”‚Ì’†‚ÉƒfƒtƒHƒ‹ƒgˆ—‚ğ‘‚­i‹ó‚Å‚àOKj
+// å¿…è¦ã«å¿œã˜ã¦å„é–¢æ•°ã®ä¸­ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†ã‚’æ›¸ãï¼ˆç©ºã§ã‚‚OKï¼‰
 void UUI_MenuBase::OnFocusUp_Implementation() {}  
 void UUI_MenuBase::OnFocusDown_Implementation() {}
 void UUI_MenuBase::OnFocusRight_Implementation() {}
 void UUI_MenuBase::OnFocusLeft_Implementation() {}
 
 
-// C++‚©‚çŒÄ‚Ño‚·ƒ‰ƒbƒp[ŠÖ”ŒQiBlueprintƒCƒxƒ“ƒg‚ğ”­‰Îj
+// C++ã‹ã‚‰å‘¼ã³å‡ºã™ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°ç¾¤ï¼ˆBlueprintã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç«ï¼‰
 void UUI_MenuBase::FocusUp()
 {
 	OnFocusUp();

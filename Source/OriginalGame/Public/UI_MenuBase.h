@@ -1,4 +1,4 @@
-// UI_MenuBase.h
+ï»¿// UI_MenuBase.h
 
 #pragma once
 
@@ -15,38 +15,38 @@ class ORIGINALGAME_API UUI_MenuBase : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	// Widget‚Ì‰Šú‰»ˆ—B•K—v‚É‰‚¶‚Ä“à•”‚ÅƒtƒH[ƒJƒXİ’è‚È‚Ç‰Â”\B
+	// Widgetã®åˆæœŸåŒ–å‡¦ç†ã€‚å¿…è¦ã«å¿œã˜ã¦å†…éƒ¨ã§ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®šãªã©å¯èƒ½ã€‚
 	virtual void NativeConstruct() override;
 
 	// -------------------------
-	// Blueprint‘¤‚Åˆ—‚ğ’è‹`‚·‚éƒCƒxƒ“ƒgŠÖ”ŒQiƒtƒH[ƒJƒXˆÚ“®j
+	// Blueprintå´ã§å‡¦ç†ã‚’å®šç¾©ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°ç¾¤ï¼ˆãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•ï¼‰
 	// -------------------------
 
-	// ã•ûŒü‚ÌƒtƒH[ƒJƒXˆÚ“®‚ğˆ—‚·‚éBBlueprint‚ÅƒI[ƒo[ƒ‰ƒCƒh‰Â”\B
+	// ä¸Šæ–¹å‘ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•ã‚’å‡¦ç†ã™ã‚‹ã€‚Blueprintã§ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰å¯èƒ½ã€‚
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
 	void OnFocusUp();
-	virtual void OnFocusUp_Implementation(); // C++‚Å‚ÌƒfƒtƒHƒ‹ƒgÀ‘•i‹ó‚Å‚àOKj
+	virtual void OnFocusUp_Implementation(); // C++ã§ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£…ï¼ˆç©ºã§ã‚‚OKï¼‰
 
-	// ‰º•ûŒü‚ÌƒtƒH[ƒJƒXˆÚ“®
+	// ä¸‹æ–¹å‘ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
 	void OnFocusDown();
 	virtual void OnFocusDown_Implementation();
 
-	// ‰E•ûŒü‚ÌƒtƒH[ƒJƒXˆÚ“®
+	// å³æ–¹å‘ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
 	void OnFocusRight();
 	virtual void OnFocusRight_Implementation();
 
-	// ¶•ûŒü‚ÌƒtƒH[ƒJƒXˆÚ“®
+	// å·¦æ–¹å‘ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ç§»å‹•
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
 	void OnFocusLeft();
 	virtual void OnFocusLeft_Implementation();
 
 	// -------------------------
-	// C++‘¤‚ÅŒÄ‚Ô‚½‚ß‚Ìƒ‰ƒbƒp[ŠÖ”
+	// C++å´ã§å‘¼ã¶ãŸã‚ã®ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°
 	// -------------------------
 
-	// ƒvƒŒƒCƒ„[ƒRƒ“ƒgƒ[ƒ‰[‚È‚Ç‚©‚çŒÄ‚Ño‚³‚ê‚éÀŠÖ”i“à•”‚Åã‚ÌƒCƒxƒ“ƒg‚ğ”­‰Îj
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãªã©ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹å®Ÿé–¢æ•°ï¼ˆå†…éƒ¨ã§ä¸Šã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºç«ï¼‰
 	void FocusUp();
 	void FocusDown();
 	void FocusLeft();
