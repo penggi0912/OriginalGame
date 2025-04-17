@@ -4,6 +4,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "UI_MenuBase.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 
 void AMyPlayerController::BeginPlay()
 {
@@ -11,7 +12,7 @@ void AMyPlayerController::BeginPlay()
 
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
-		Subsystem->AddMappingContext(MenuMappingContext, 1); // IMC_Menu
+		Subsystem->AddMappingContext(IMC_Menu, 1); // IMC_Menu
 	}
 }
 
@@ -21,41 +22,57 @@ void AMyPlayerController::SetupInputComponent()
 
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
-		EnhancedInput->BindAction(MoveUpAction, ETriggerEvent::Triggered, this, &AMyPlayerController::OnMoveUp);
-		EnhancedInput->BindAction(MoveDownAction, ETriggerEvent::Triggered, this, &AMyPlayerController::OnMoveDown);
-		EnhancedInput->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &AMyPlayerController::OnMoveLeft);
-		EnhancedInput->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AMyPlayerController::OnMoveRight);
+		EnhancedInput->BindAction(IA_FocusUp, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusUp);
+		EnhancedInput->BindAction(IA_FocusDown, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusDown);
+		EnhancedInput->BindAction(IA_FocusRight, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusRight);
+		EnhancedInput->BindAction(IA_FocusLeft, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusLeft);
 	}
 }
 
-void AMyPlayerController::OnMoveUp(const FInputActionInstance& Instance)
+void AMyPlayerController::SetCurrentMenu_Implementation(UUI_MenuBase* Menu) 
 {
-	if (MenuWidgetRef)
+	CurrentMenu = Menu;
+
+	FInputModeGameAndUI Mode;
+	Mode.SetWidgetToFocus(Menu->TakeWidget());
+	SetInputMode(Mode);
+	SetShowMouseCursor(false);
+
+	Menu->SetFocus();
+}
+
+void AMyPlayerController::OnFocusUp(const FInputActionValue& Value)
+{
+	(void)Value;  // 未使用であることを明示
+	if (CurrentMenu)
 	{
-		MenuWidgetRef->FocusUp();
+		CurrentMenu->FocusUp();
 	}
 }
 
-void AMyPlayerController::OnMoveDown(const FInputActionInstance& Instance)
+void AMyPlayerController::OnFocusDown(const FInputActionValue& Value)
 {
-	if (MenuWidgetRef)
+	(void)Value;  // 未使用であることを明示
+	if (CurrentMenu)
 	{
-		MenuWidgetRef->FocusDown();
+		CurrentMenu->FocusDown();
 	}
 }
 
-void AMyPlayerController::OnMoveLeft(const FInputActionInstance& Instance)
+void AMyPlayerController::OnFocusRight(const FInputActionValue& Value)
 {
-	if (MenuWidgetRef)
+	(void)Value;  // 未使用であることを明示
+	if (CurrentMenu)
 	{
-		MenuWidgetRef->FocusLeft();
+		CurrentMenu->FocusRight();
 	}
 }
 
-void AMyPlayerController::OnMoveRight(const FInputActionInstance& Instance)
+void AMyPlayerController::OnFocusLeft(const FInputActionValue& Value)
 {
-	if (MenuWidgetRef)
+	(void)Value;  // 未使用であることを明示
+	if (CurrentMenu)
 	{
-		MenuWidgetRef->FocusRight();
+		CurrentMenu->FocusLeft();
 	}
 }

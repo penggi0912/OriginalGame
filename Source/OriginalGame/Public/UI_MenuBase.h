@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// UI_MenuBase.h
 
 #pragma once
 
@@ -15,20 +15,40 @@ class ORIGINALGAME_API UUI_MenuBase : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	// メニュー操作時にコントローラーから呼び出す
-	UFUNCTION(BlueprintCallable, Category = "Menu Navigation")
-	void FocusUp();
-
-	UFUNCTION(BlueprintCallable, Category = "Menu Navigation")
-	void FocusDown();
-
-	UFUNCTION(BlueprintCallable, Category = "Menu Navigation")
-	void FocusRight();
-
-	UFUNCTION(BlueprintCallable, Category = "Menu Navigation")
-	void FocusLeft();
-
-protected:
-	// 初期化(ウィジェット作成後に呼ばれる)
+	// Widgetの初期化処理。必要に応じて内部でフォーカス設定など可能。
 	virtual void NativeConstruct() override;
+
+	// -------------------------
+	// Blueprint側で処理を定義するイベント関数群（フォーカス移動）
+	// -------------------------
+
+	// 上方向のフォーカス移動を処理する。Blueprintでオーバーライド可能。
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
+	void OnFocusUp();
+	virtual void OnFocusUp_Implementation(); // C++でのデフォルト実装（空でもOK）
+
+	// 下方向のフォーカス移動
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
+	void OnFocusDown();
+	virtual void OnFocusDown_Implementation();
+
+	// 右方向のフォーカス移動
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
+	void OnFocusRight();
+	virtual void OnFocusRight_Implementation();
+
+	// 左方向のフォーカス移動
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MenuNavigation")
+	void OnFocusLeft();
+	virtual void OnFocusLeft_Implementation();
+
+	// -------------------------
+	// C++側で呼ぶためのラッパー関数
+	// -------------------------
+
+	// プレイヤーコントローラーなどから呼び出される実関数（内部で上のイベントを発火）
+	void FocusUp();
+	void FocusDown();
+	void FocusLeft();
+	void FocusRight();
 };

@@ -5,9 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "InputAction.h"
-#include "InputMappingContext.h"
+#include "InputActionValue.h"
 #include "MyPlayerController.generated.h"
 
+class UInputMappingContext;
+class UInputAction;
 class UUI_MenuBase;
 
 UCLASS()
@@ -18,33 +20,39 @@ class ORIGINALGAME_API AMyPlayerController : public APlayerController
 protected:
 	virtual void BeginPlay() override;
 
-	// 入力バインディング
-	virtual void SetupInputComponent() override;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputMappingContext* MenuMappingContext;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* MoveUpAction;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* MoveDownAction;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* MoveLeftAction;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* MoveRightAction;
 
 public:
-	// メニュー参照を渡せるようにする
-	UPROPERTY()
-	UUI_MenuBase* MenuWidgetRef;
+	virtual void SetupInputComponent() override;
+
+	// IMC, IA をエディタで設定できるように
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputMappingContext* IMC_Menu;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* IA_FocusUp;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* IA_FocusDown;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* IA_FocusRight;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	UInputAction* IA_FocusLeft;
 
 	// 入力受け取り先
-	void OnMoveUp(const FInputActionInstance& Instance);
-	void OnMoveDown(const FInputActionInstance& Instance);
-	void OnMoveLeft(const FInputActionInstance& Instance);
-	void OnMoveRight(const FInputActionInstance& Instance);
-};
+	void OnFocusUp(const FInputActionValue& Value);
+	void OnFocusDown(const FInputActionValue& Value);
+	void OnFocusRight(const FInputActionValue& Value);
+	void OnFocusLeft(const FInputActionValue& Value);
 
+private:
+	// 表示中のメニュー参照を渡せるようにする
+	UPROPERTY()
+	UUI_MenuBase* CurrentMenu;
+
+public:
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Menu")
+	void SetCurrentMenu(UUI_MenuBase* Menu);
+	virtual void SetCurrentMenu_Implementation(UUI_MenuBase* Menu);
+};

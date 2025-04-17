@@ -1,36 +1,43 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+// UI_MenuBase.cpp
 
 #include "UI_MenuBase.h"
 #include "Kismet/KismetSystemLibrary.h"
+
+// 各方向の関数は、Blueprint実装イベントを呼び出す（Blueprintで処理できるようにする）
 
 void UUI_MenuBase::NativeConstruct()
 {
 	Super::NativeConstruct();
 
 	// 必要であればここで初期フォーカス設定なども可能
-	// 例: SetKeyboardFocus() など
+	// ウィジェット自体にフォーカス
+	SetFocus();
 }
 
+// 必要に応じて各関数の中にデフォルト処理を書く（空でもOK）
+void UUI_MenuBase::OnFocusUp_Implementation() {}  
+void UUI_MenuBase::OnFocusDown_Implementation() {}
+void UUI_MenuBase::OnFocusRight_Implementation() {}
+void UUI_MenuBase::OnFocusLeft_Implementation() {}
+
+
+// C++から呼び出すラッパー関数群（Blueprintイベントを発火）
 void UUI_MenuBase::FocusUp()
 {
-	UE_LOG(LogTemp, Log, TEXT("UI: FocusUp called"));
-
-	// 実際のロジックはウィジェット側で組む
-	// 例: 現在選択中のボタンの上のウィジェットにフォーカスを移す、など
+	OnFocusUp();
 }
 
 void UUI_MenuBase::FocusDown()
 {
-	UE_LOG(LogTemp, Log, TEXT("UI: FocusDown called"));
-}
-
-void UUI_MenuBase::FocusLeft()
-{
-	UE_LOG(LogTemp, Log, TEXT("UI: FocusLeft called"));
+	OnFocusDown();
 }
 
 void UUI_MenuBase::FocusRight()
 {
-	UE_LOG(LogTemp, Log, TEXT("UI: FocusRight called"));
+	OnFocusRight();
+}
+
+void UUI_MenuBase::FocusLeft()
+{
+	OnFocusLeft();
 }
