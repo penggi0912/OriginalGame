@@ -12,7 +12,7 @@ void AMyPlayerController::BeginPlay()
 
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
-		Subsystem->AddMappingContext(IMC_Menu, 1); // IMC_Menu
+		Subsystem->AddMappingContext(IMC_Menu, 100); // IMC_Menu
 	}
 }
 
@@ -22,11 +22,17 @@ void AMyPlayerController::SetupInputComponent()
 
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(InputComponent))
 	{
+        UE_LOG(LogTemp, Warning, TEXT("EnhancedInputComponent acquired"));
+
 		EnhancedInput->BindAction(IA_FocusUp, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusUp);
 		EnhancedInput->BindAction(IA_FocusDown, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusDown);
 		EnhancedInput->BindAction(IA_FocusRight, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusRight);
 		EnhancedInput->BindAction(IA_FocusLeft, ETriggerEvent::Triggered, this, &AMyPlayerController::OnFocusLeft);
 	}
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("EnhancedInputComponent NOT found"));
+    }
 }
 
 void AMyPlayerController::SetCurrentMenu_Implementation(UUI_MenuBase* Menu) 
@@ -61,6 +67,8 @@ void AMyPlayerController::OnFocusDown(const FInputActionValue& Value)
 
 void AMyPlayerController::OnFocusRight(const FInputActionValue& Value)
 {
+    UE_LOG(LogTemp, Warning, TEXT("OnFocusRight triggered! Value = %s"), *Value.ToString());
+
 	(void)Value;  // 未使用であることを明示
 	if (CurrentMenu)
 	{
