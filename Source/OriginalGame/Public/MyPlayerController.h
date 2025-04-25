@@ -17,34 +17,30 @@ class ORIGINALGAME_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+/*
+* ゲーム開始時にIMC_Menuを割り当て
+* 現状は使用しないのでコメントアウト
+* 将来的にゲーム開始時のIMCをIMC_Menuに統合するから残しておく
 protected:
 	virtual void BeginPlay() override;
-
+ */
 
 public:
 	virtual void SetupInputComponent() override;
 
+    UFUNCTION()
+    void OnMenuMove(const struct FInputActionValue& Value);
+
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* IA_MenuMove;
+    
 	// IMC, IA をエディタで設定できるように
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UInputMappingContext* IMC_Menu;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* IA_FocusUp;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* IA_FocusDown;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* IA_FocusRight;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputAction* IA_FocusLeft;
-
-	// 入力受け取り先
-	void OnFocusUp(const FInputActionValue& Value);
-	void OnFocusDown(const FInputActionValue& Value);
-	void OnFocusRight(const FInputActionValue& Value);
-	void OnFocusLeft(const FInputActionValue& Value);
+    // スティック入力のしきい値
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+    float StickInputThreshold = 0.4f;
 
 private:
 	// 表示中のメニュー参照を渡せるようにする

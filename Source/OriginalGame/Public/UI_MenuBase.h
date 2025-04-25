@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "UI_MenuBase.generated.h"
 
 /**
@@ -14,9 +15,22 @@ class ORIGINALGAME_API UUI_MenuBase : public UUserWidget
 {
 	GENERATED_BODY()
 
+// カーソル移動キーを押しっぱなしにした時の入力間隔(IA_MenuMove側と統一)
+private:
+    float LastInputTime = 0.0f;
+
+public:
+    // Blueprint側で調整可能な入力インターバル（秒）
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+    float InputInterval = 0.15f; // 秒単位
+
+
 public:
 	// Widgetの初期化処理。必要に応じて内部でフォーカス設定など可能。
 	virtual void NativeConstruct() override;
+
+    // PreviewKeyDownをオーバーライドしてキー入力を捕まえる
+    virtual FReply NativeOnPreviewKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
 
 	// -------------------------
 	// Blueprint側で処理を定義するイベント関数群（フォーカス移動）

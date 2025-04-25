@@ -6,6 +6,7 @@
 #include "EnhancedInputComponent.h"
 #include "UI_MenuBase.h"
 #include "GameFramework/PlayerController.h"
+#include "Components/Button.h"
 
 UMenuManagerComponent::UMenuManagerComponent()
 {
@@ -32,7 +33,7 @@ void UMenuManagerComponent::OpenMenu_Implementation(UUI_MenuBase* MenuWidget)
         {
             // すべてのマッピングを一旦リセットして、IMC_Menuに切り替える
             Subsystem->ClearAllMappings();
-            Subsystem->AddMappingContext(IMC_Menu, 5);
+            Subsystem->AddMappingContext(IMC_Menu, 1000);
         }
     }
 
@@ -41,13 +42,13 @@ void UMenuManagerComponent::OpenMenu_Implementation(UUI_MenuBase* MenuWidget)
     Mode.SetWidgetToFocus(MenuWidget->TakeWidget());
     Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
     PC->SetInputMode(Mode);
-    PC->SetShowMouseCursor(true);
+    PC->SetShowMouseCursor(false);
 
     // 表示とフォーカス
     MenuRef = MenuWidget;
     MenuRef->AddToViewport();
     MenuRef->SetVisibility(ESlateVisibility::Visible);
-    MenuRef->SetFocus();
+  
 
     bMenuIsClose = false;
 }
@@ -67,15 +68,9 @@ void UMenuManagerComponent::CloseMenu()
     {
         if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(LocalPlayer))
         {
-            // IMC_Menuを外して、IMC_Defaultを復帰
-            if (IMC_Menu)
-            {
-                Subsystem->RemoveMappingContext(IMC_Menu);
-            }
-            if (IMC_Default)
-            {
-                Subsystem->AddMappingContext(IMC_Default, 0);
-            }
+            // IMC_Menuを外して、IMC_Defaultに戻す
+            Subsystem->ClearAllMappings();
+            Subsystem->AddMappingContext(IMC_Default, 0);
         }
     }
 
