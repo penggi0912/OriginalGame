@@ -33,7 +33,7 @@ void UMenuManagerComponent::OpenMenu_Implementation(UUI_MenuBase* MenuWidget)
         {
             // すべてのマッピングを一旦リセットして、IMC_Menuに切り替える
             Subsystem->ClearAllMappings();
-            Subsystem->AddMappingContext(IMC_Menu, 1000);
+            Subsystem->AddMappingContext(IMC_Menu, 1);
         }
     }
 
@@ -49,7 +49,7 @@ void UMenuManagerComponent::OpenMenu_Implementation(UUI_MenuBase* MenuWidget)
     MenuRef->AddToViewport();
     MenuRef->SetVisibility(ESlateVisibility::Visible);
   
-
+    // メニュー開閉フラグ
     bMenuIsClose = false;
 }
 
@@ -78,6 +78,7 @@ void UMenuManagerComponent::CloseMenu()
     MenuRef->RemoveFromParent();
     MenuRef = nullptr;
 
+    // メニュー開閉フラグ
     bMenuIsClose = true;
 
     // 入力モードをゲーム操作専用に戻す

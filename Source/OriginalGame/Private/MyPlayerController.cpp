@@ -21,6 +21,9 @@ void AMyPlayerController::BeginPlay()
 }
 */
 
+/*
+*  IA_MenuMoveから受け取った入力をOnMenuMove関数へバインド
+*/
 void AMyPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -36,6 +39,11 @@ void AMyPlayerController::SetupInputComponent()
     }
 }
 
+/*
+* InputModeをGame& UIに変更
+* 現在のメニューにフォーカスをセット
+* マウスカーソルを非表示に
+*/ 
 void AMyPlayerController::SetCurrentMenu_Implementation(UUI_MenuBase* Menu) 
 {
 	CurrentMenu = Menu;
@@ -47,7 +55,9 @@ void AMyPlayerController::SetCurrentMenu_Implementation(UUI_MenuBase* Menu)
 
 }
 
-// メニュー画面で左スティック(IA_MenuMove)を使ったフォーカス移動方向の判定処理
+/*
+*  メニュー画面で左スティック(IA_MenuMove)を使ったフォーカス移動方向の判定処理
+*/
 void AMyPlayerController::OnMenuMove(const FInputActionValue& Value)
 {
     if (!CurrentMenu) return;
@@ -57,7 +67,7 @@ void AMyPlayerController::OnMenuMove(const FInputActionValue& Value)
     // 入力値がほぼゼロの場合は何もしない
     if (Dir.Size() < 0.1f) return;
 
-    // 補正して上下を反転
+    // 補正して上下を反転(UE5ではスティックを手前に倒すと+になるのが標準なので合わせる)
     float CorrectedY = -Dir.Y;
     
     // 絶対値で大小を比較（方向性はあとで使う）
@@ -65,8 +75,7 @@ void AMyPlayerController::OnMenuMove(const FInputActionValue& Value)
     float AbsY = FMath::Abs(CorrectedY);
 
 
-
-    // Y（上下）の方が強ければ上下処理
+    //  Y（上下）のほうが強ければ上下処理
     if (AbsY > AbsX)
     {
         if (CorrectedY > StickInputThreshold)  // StickInputThresholdは入力しきい値
@@ -78,7 +87,7 @@ void AMyPlayerController::OnMenuMove(const FInputActionValue& Value)
             CurrentMenu->FocusUp();  // 奥に倒す(上移動)
         }
     }
-    // X（左右）の方が強ければ左右処理
+    // X（左右）のほうが強ければ左右処理
     else
     {
         if (Dir.X > StickInputThreshold)

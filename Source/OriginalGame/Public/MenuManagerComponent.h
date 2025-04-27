@@ -21,12 +21,16 @@ public:
     // メニュー表示制御
     // ========================
 
-    // メニューを開く（C++＋Blueprintから拡張可能）
+    /*
+    * メニューを開く（C++とBlueprintから拡張可能）
+    */
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Menu")
     void OpenMenu(UUI_MenuBase* MenuWidget);
     virtual void OpenMenu_Implementation(UUI_MenuBase* MenuWidget);
 
-    // メニューを閉じる（呼び出しはBlueprint or C++）
+    /*
+    * メニューを閉じる（呼び出しはBlueprint or C++）
+    */
     UFUNCTION(BlueprintCallable, Category = "Menu")
     void CloseMenu();
 
@@ -36,6 +40,9 @@ public:
     // メニュー開閉フラグ
     bool bMenuIsClose = true;
 
+    /*
+    * メニュー開閉フラグを返す関数
+    */
     UFUNCTION(BlueprintCallable, Category = "Menu")
     bool IsMenuClose() const;
 

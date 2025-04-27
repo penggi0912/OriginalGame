@@ -17,38 +17,40 @@ class ORIGINALGAME_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-/*
-* ゲーム開始時にIMC_Menuを割り当て
-* 現状は使用しないのでコメントアウト
-* 将来的にゲーム開始時のIMCをIMC_Menuに統合するから残しておく
-protected:
-	virtual void BeginPlay() override;
- */
+    /*
+    * ゲーム開始時にIMC_Menuを割り当て
+    * 現状は使用しないのでコメントアウト
+    * 将来的にゲーム開始時のIMCをIMC_Menuに統合するから残しておく
+    protected:
+	    virtual void BeginPlay() override;
+     */
 
-public:
-	virtual void SetupInputComponent() override;
+    public:
+	    virtual void SetupInputComponent() override;
 
-    UFUNCTION()
-    void OnMenuMove(const struct FInputActionValue& Value);
+        // メニュー内のフォーカス移動関数
+        UFUNCTION()
+        void OnMenuMove(const struct FInputActionValue& Value);
 
-    UPROPERTY(EditDefaultsOnly, Category = "Input")
-    UInputAction* IA_MenuMove;
+        // メニュー用Lスティック&WASDのInput Actionを宣言(バインド用)
+        UPROPERTY(EditDefaultsOnly, Category = "Input")
+        UInputAction* IA_MenuMove;
     
-	// IMC, IA をエディタで設定できるように
-	UPROPERTY(EditDefaultsOnly, Category = "Input")
-	UInputMappingContext* IMC_Menu;
+	    // IMC, IA をエディタで設定できるように宣言
+	    UPROPERTY(EditDefaultsOnly, Category = "Input")
+	    UInputMappingContext* IMC_Menu;
 
-    // スティック入力のしきい値
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-    float StickInputThreshold = 0.4f;
+        // スティック入力のしきい値
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+        float StickInputThreshold = 0.4f;
 
-private:
-	// 表示中のメニュー参照を渡せるようにする
-	UPROPERTY()
-	UUI_MenuBase* CurrentMenu;
+    // 表示中のメニュー参照を渡せるようにする
+    private:
+	    UPROPERTY()
+	    UUI_MenuBase* CurrentMenu;
 
-public:
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Menu")
-	void SetCurrentMenu(UUI_MenuBase* Menu);
-	virtual void SetCurrentMenu_Implementation(UUI_MenuBase* Menu);
+    public:
+	    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Menu")
+	    void SetCurrentMenu(UUI_MenuBase* Menu);
+	    virtual void SetCurrentMenu_Implementation(UUI_MenuBase* Menu);
 };
