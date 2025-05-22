@@ -10,7 +10,8 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"UMG",
-				"Engine"
+				"Engine",
+				"CoreUObject"
 			]
 		}
 	],
@@ -60,6 +61,14 @@
 		{
 			"Name": "WaveformEditor",
 			"Enabled": true
+		},
+		{
+			"Name": "AssetPostImportHook",
+			"Enabled": false
+		},
+		{
+			"Name": "AutoAssetMoverPlugin",
+			"Enabled": false
 		}
 	]
 }
