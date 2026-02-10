@@ -9,11 +9,16 @@
 
 【起動方法】<br/>
 ・mainブランチを選択し、ページ右側の「<>Code」 > 「Download ZIP」でプロジェクトをダウンロード<br/>
+・アセット名に日本語が含まれているのでこのままだとGit working setが呼ばれてビルドに失敗してしまうので、"/OriginalGame/"配下にある「Build_NoGitWorkingSet.bat」ファイルを実行し、無効化してください<br/>
+  ※Gitを使用している方は「git config core.quotepath false」コマンドでGitの日本語ファイル名のエスケープ表示を切る方法でも可<br/>
 ・「OriginalGame.uproject」ファイルを右クリック > 「その他のオプションを確認」 > 「Generate Visual Studio project files」を実行<br/>
-・「OriginalGame.sln」が作成された後、「OriginalGame.uproject」をダブルクリックするとUEエディタが起動します<br/>
+・生成された「OriginalGame.sln」をダブルクリックしてVisual Studioを起動し、上段の「Build」タブ > 「Build Solution」でビルドを実行<br/>
+・「OriginalGame.uproject」をダブルクリックするとUEエディタが起動します<br/>
 ・UEエディタ内の下部「コンテンツエディタ」を開き、Content > InGame > Maps > Game_Start_Menu からゲームを開始できます<br/>
 ・ゲームに使用中のファイルはすべてInGameフォルダ内で管理しています<br/>
 ・ゲーム内の操作はゲームパッドを推奨しています（キーボードは一部操作に対して入力設定されていません）<br/><br/>
+
+【】
 
 【基本操作（ゲームパッド）】<br/>
  Xボタン(□ボタン)：攻撃<br/>
